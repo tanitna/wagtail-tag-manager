@@ -150,6 +150,13 @@ change the text shown in the cookie bar.
 pip install wagtail-tag-manager
 ```
 
+or if you want the optional cookie scanning functionality, which requires
+a selenium driver to be installed:
+
+```
+pip install wagtail-tag-manager[cookie_scanning]
+```
+
 **Add the application to your `INSTALLED_APPS`:**
 
 ```python
@@ -473,7 +480,12 @@ Disables or enables the summary panels visible on the Wagtail admin dashboard.
 
 ### `WTM_ENABLE_SCANNER`
 
-**This is an experimental feature.**
+**This is an experimental feature.**  Using it requires a selenium driver, which
+can be installed using:
+
+```sh
+pip install wagtail-tag-manager[cookie_scanning]
+```
 
 ```python
 WTM_ENABLE_SCANNER = False

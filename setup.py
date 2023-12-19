@@ -4,7 +4,6 @@ from setuptools import find_packages, setup
 install_requires = [
     "wagtail>=4.0,<6.0",
     "wagtail_modeladmin>=1.0.0,<1.1.0",
-    "selenium>=3.141.0,<3.142.0",
 ]
 
 tests_require = [
@@ -23,9 +22,16 @@ tests_require = [
     "pytest-sugar",
     "pytest",
     "wagtail_factories",
+    "selenium>=3.141.0,<3.142.0",
 ]
 
 docs_require = ["sphinx>=2.4.0"]
+
+extras_require = {
+    "cookie_scanning": ["selenium>=3.141.0,<3.142.0"],
+    "docs": docs_require,
+    "test": tests_require,
+}
 
 with open('README.md') as fh:
     long_description = fh.read()
@@ -39,7 +45,7 @@ setup(
     url="https://github.com/jberghoef/wagtail-tag-manager",
     install_requires=install_requires,
     tests_require=tests_require,
-    extras_require={"docs": docs_require, "test": tests_require},
+    extras_require=extras_require,
     packages=find_packages("src"),
     package_dir={"": "src"},
     include_package_data=True,

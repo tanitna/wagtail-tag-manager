@@ -11,7 +11,10 @@ from wagtail_modeladmin.views import IndexView
 from wagtail_tag_manager.forms import ConsentForm
 from wagtail_tag_manager.models import Trigger, Constant, Variable, TagTypeSettings
 from wagtail_tag_manager.consent import Consent
-from wagtail_tag_manager.webdriver import CookieScanner
+try:
+    from wagtail_tag_manager.webdriver import CookieScanner
+except ImportError:
+    CookieScanner = None
 from wagtail_tag_manager.decorators import get_variables
 
 __version__ = django.get_version()
@@ -150,6 +153,7 @@ class CookieDeclarationIndexView(WTMIndexView):
             getattr(settings, "WTM_ENABLE_SCANNER", False)
             and request.user.is_authenticated
             and request.user.is_staff
+            and CookieScanner is not None
         ):
             response = HttpResponseRedirect("")
             CookieScanner(request).scan()
